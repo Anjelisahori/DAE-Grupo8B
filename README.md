@@ -1,26 +1,27 @@
 # 📚 DAE-Grupo8B
-Bienvenid@s al proyecto de Django colaborativo para el curso de Desarrollo de Aplicaciones Empresariales (DAE).
-Este repositorio contiene una aplicación Django con estructura limpia y preparada para trabajar en equipo.
+Welcome to the collaborative Django project for the *Enterprise Application Development (DAE)* course.  
+This repository contains a Django application with a clean structure, designed for efficient teamwork.
 
-## 🚀 Requisitos
-Python 3.10 o superior
-pip
-Git
-(Opcional) Visual Studio Code
-## 🛠️ Instalación del entorno
-1. Clona el repositorio:
+## 🚀 Requirements
+- Python 3.10 or higher  
+- pip  
+- Git  
+- (Optional) Visual Studio Code
+  
+## 🛠️ Environment Setup
+1. Clone the repository:
    - git clone https://github.com/Anjelisahori/DAE-Grupo8B.git
    - cd DAE-Grupo8B
-2. Crea y activa un entorno virtual:
+2. Create and activate a virtual environment:
    - python -m venv venv
    - venv\Scripts\activate
-3. Instala las dependencias:
+3. Install project dependencies:
    - pip install -r src/requirements.txt
-4. Corre el servidor:
+4. Run the development server:
    - cd src
    - python manage.py runserver
 
-## 📝 Notas
-- No subir el entorno virtual (venv) ni archivos .env
-- Usar git pull antes de hacer push para evitar conflictos
-- Cada nueva dependencia que se instale, añadirla con: pip freeze > src/requirements.txt
+## 📝 Notes
+- Do not upload the virtual environment (venv/) or .env files to the repository.
+- Always run git pull before pushing changes to avoid conflicts.
+- After installing new dependencies, update the requirements.txt file: pip freeze > src/requirements.txt
