@@ -1,0 +1,27 @@
+ # Entorno virtual
+venv/
+
+# Archivos de entorno
+.env
+
+# Compilados de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Editor
+.vscode/
+
+# Base de datos local
+*.sqlite3
+db.sqlite3
+
+# Archivos de logs
+*.log
+
+# Archivos de medios subidos por usuarios
+media/
+
+# Configuraciones locales
+local_settings.py
+
