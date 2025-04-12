@@ -9,4 +9,5 @@ urlpatterns = [
     path('books/<int:pk>/', views.book_detail, name='book_detail'),  # 📖 Book detail
     path('categories/', views.category_list, name='category_list'),  # 🏷️ Categories list
     path('categories/<slug:slug>/', views.category_detail, name='category_detail'),  # 🏷️ Category detail
+    path('api/books/', views.api_books, name='api_books'),  # API for books
 ]

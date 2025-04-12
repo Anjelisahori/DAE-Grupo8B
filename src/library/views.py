@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Count
 from .models import Author, Book, Category, Publisher
+from django.http import JsonResponse
 
 def home(request):
     """View for home page with library statistics"""
@@ -61,3 +62,9 @@ def category_detail(request, slug):
     # Get all books in this category 📚
     books = category.books.all().select_related('author')
     return render(request, 'library/category_detail.html', {'category': category, 'books': books})
+
+def api_books(request):
+    books = Book.objects.select_related('author').values(
+        'id', 'title', 'isbn', 'summary', 'publication_date', 'author__name'
+    )
+    return JsonResponse(list(books), safe=False)

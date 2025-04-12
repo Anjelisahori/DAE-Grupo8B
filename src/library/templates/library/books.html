@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>📚 API Book List</title>
+  <link rel="stylesheet" href="{% static 'css/books.css' %}">
+</head>
+<body>
+  <div class="container">
+    <h1>📚 All Books (desde API)</h1>
+    <div id="book-list" class="book-grid">
+      <!-- Aquí se insertan los libros con JS -->
+    </div>
+  </div>
+
+  <script src="{% static 'js/books.js' %}"></script>
+</body>
+</html>
