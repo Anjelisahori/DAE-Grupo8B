@@ -1,8 +1,9 @@
 body {
     font-family: 'Segoe UI', sans-serif;
-    background-color: #f9f9f9;
+    background-color: #fdfcff;
     margin: 0;
     padding: 2rem;
+    color: #2d2d2d;
 }
 
 .container {
@@ -13,7 +14,8 @@ body {
 h1 {
     text-align: center;
     margin-bottom: 2rem;
-    color: #333;
+    color: #4a3fbc;
+    font-size: 2.2rem;
 }
 
 .book-grid {
@@ -23,16 +25,23 @@ h1 {
 }
 
 .book-card {
-    background-color: white;
-    padding: 1.2rem;
-    border-left: 5px solid #007bff;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-left: 5px solid #6C63FF;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(108, 99, 255, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 14px rgba(108, 99, 255, 0.15);
 }
 
 .book-card h3 {
-    margin-bottom: 0.5rem;
-    color: #222;
+    margin-bottom: 0.6rem;
+    color: #333;
+    font-size: 1.2rem;
 }
 
 .book-card p {
