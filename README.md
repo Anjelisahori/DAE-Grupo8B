@@ -17,20 +17,19 @@ Este repositorio contiene una aplicación Django con estructura limpia y prepara
 ## 🛠️ Instalación del entorno
 
 1. **Clona el repositorio:**
-git clone https://github.com/Anjelisahori/DAE-Grupo8B.git
-cd DAE-Grupo8B
+- git clone https://github.com/Anjelisahori/DAE-Grupo8B.git
+- cd DAE-Grupo8B
 
 2. Crea y activa un entorno virtual:
-# Windows
-python -m venv venv
-venv\Scripts\activate
+- python -m venv venv
+- venv\Scripts\activate
 
 3. Instala las dependencias:
-pip install -r src/requirements.txt
+- pip install -r src/requirements.txt
 
 4. Corre el servidor:
-cd src
-python manage.py runserver
+- cd src
+- python manage.py runserver
 
 📝 Notas
 - No subir el entorno virtual (venv) ni archivos .env
