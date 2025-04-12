@@ -299,3 +299,142 @@ body {
 .back-btn:hover {
     background-color: #5a6268;
 }
+
+
+/* AUTHOR DETAIL */
+
+.profile-card {
+    margin-top: 2rem;
+    background-color: #f8f9fa;
+    padding: 1rem 1.5rem;
+    border-left: 5px solid #6c757d;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.profile-card h5 {
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.profile-img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+/* Reutilizamos estilos de book-grid y book-card ya definidos */
+
+.subheading {
+    margin: 3rem 0 1.5rem;
+    font-size: 1.4rem;
+    color: #333;
+}
+
+/* Info Box for empty state */
+.info-box {
+    background-color: #eef4ff;
+    padding: 1.2rem;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.1rem;
+    color: #333;
+    margin-top: 1rem;
+}
+
+
+/* AUTHOR LIST */
+
+.author-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.author-card {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-left: 5px solid #007bff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.author-card h5 {
+    margin-bottom: 0.5rem;
+    color: #222;
+}
+
+.author-card p {
+    font-size: 0.95rem;
+    color: #444;
+    margin-bottom: 0.5rem;
+}
+
+/* CATEGORY DETAIL */
+
+.detail-card {
+    background-color: #fff;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-left: 5px solid #007bff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.subheading {
+    margin: 2rem 0 1rem;
+    font-size: 1.4rem;
+    color: #333;
+}
+
+.subtitle {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+/* Reutiliza estilos: book-grid, book-card, btn, info-box, back-btn */
+
+
+/* CATEGORY LIST */
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.category-card {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-left: 5px solid #28a745;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.category-card h5 {
+    margin-bottom: 0.5rem;
+    color: #222;
+}
+
+.category-card p {
+    font-size: 0.95rem;
+    color: #444;
+    margin-bottom: 0.5rem;
+}
+
+.badge {
+    background-color: #007bff;
+    color: white;
+    padding: 0.3rem 0.7rem;
+    border-radius: 12px;
+    font-size: 0.9rem;
+}
