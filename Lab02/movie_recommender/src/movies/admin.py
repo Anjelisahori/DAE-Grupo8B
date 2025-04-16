@@ -1,3 +1,4 @@
+from .utils import create_recommendation_admin_action
 from django.contrib import admin
 from django.utils.html import format_html
 from django.db.models import Avg
@@ -143,6 +144,7 @@ class UserProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'favorite_genre_count', 'rating_count')
     search_fields = ('user__username',)
     filter_horizontal = ('favorite_genres', 'favorite_movies')
+    actions = [create_recommendation_admin_action()]
     
     def favorite_genre_count(self, obj):
         """Count favorite genres"""
@@ -153,6 +155,7 @@ class UserProfileAdmin(admin.ModelAdmin):
         """Count ratings"""
         return obj.user.ratings.count()
     rating_count.short_description = "Ratings"
+
 
 
 @admin.register(Rating)
