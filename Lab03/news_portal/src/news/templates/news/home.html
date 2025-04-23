@@ -1,0 +1,57 @@
+{% extends "news/base.html" %}
+
+{% block title %}Home - Django News Portal{% endblock %}
+
+{% block content %}
+    <h2>Latest News</h2>
+    
+    {% for article in latest_articles %}
+        <article class="article-card">
+            <h3 class="article-card__title">
+                <a href="{{ article.get_absolute_url }}" class="article-card__link">{{ article.title }}</a>
+            </h3>
+            
+            <div class="article-card__meta">
+                <span>By {{ article.author.username }}</span>
+                <span>in {{ article.category.name }}</span>
+                <span>on {{ article.published_date|date:"F j, Y" }}</span>
+            </div>
+            
+            {% if article.image %}
+                <img src="{{ article.image.url }}" alt="{{ article.title }}" class="article-card__image">
+            {% endif %}
+            
+            <div class="article-card__content">
+                <p>{{ article.content|truncatewords:50 }}</p>
+                <a href="{{ article.get_absolute_url }}" class="article-card__link">Read more</a>
+            </div>
+        </article>
+    {% empty %}
+        <p>No articles available.</p>
+    {% endfor %}
+{% endblock %}
+
+Let's create a template for the article detail in news/templates/news/article_detail.html 📄:
+{% extends "news/base.html" %}
+
+{% block title %}{{ article.title }} - Django News Portal{% endblock %}
+
+{% block content %}
+    <article class="article-card">
+        <h2 class="article-card__title">{{ article.title }}</h2>
+        
+        <div class="article-card__meta">
+            <span>By {{ article.author.username }}</span>
+            <span>in {{ article.category.name }}</span>
+            <span>on {{ article.published_date|date:"F j, Y" }}</span>
+        </div>
+        
+        {% if article.image %}
+            <img src="{{ article.image.url }}" alt="{{ article.title }}" class="article-card__image">
+        {% endif %}
+        
+        <div class="article-card__content">
+            {{ article.content|linebreaks }}
+        </div>
+    </article>
+{% endblock %}
