@@ -34,11 +34,11 @@ class PostDetailView(DetailView):
     model = Post
     template_name = 'blog/post_detail.html'
     context_object_name = 'post'
-    
+
     def get_queryset(self):
         """Asegura que solo mostramos publicaciones publicadas"""
         return Post.blog_objects.published()
-    
+
     def get_context_data(self, **kwargs):
         """Agrega datos adicionales al contexto"""
         context = super().get_context_data(**kwargs)
@@ -47,9 +47,9 @@ class PostDetailView(DetailView):
         context['tags'] = Tag.objects.annotate(
             posts_count=Count('posts')
         ).order_by('-posts_count')[:10]
-        context['recent_posts'] = Post.blog_objects.recent_posts().exclude(
+        context['recent_posts'] = Post.blog_objects.published().exclude(
             id=self.object.id
-        )
+        ).order_by('-published_at')[:5]
         return context
 
 
