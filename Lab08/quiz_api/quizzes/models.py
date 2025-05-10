@@ -1,5 +1,8 @@
 from django.db import models
 
+# Asegúrate de importar los modelos Category y Tag
+from categories.models import Category, Tag
+
 
 class Quiz(models.Model):
     """Model for quizzes"""
@@ -7,7 +10,13 @@ class Quiz(models.Model):
     description = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    
+
+    # Añadimos la relación con Category
+    category = models.ForeignKey('categories.Category', on_delete=models.SET_NULL, null=True, related_name='quizzes')
+
+    # Añadimos la relación con Tag
+    tags = models.ManyToManyField('categories.Tag', related_name='quizzes', blank=True)
+
     class Meta:
         verbose_name_plural = "quizzes"
         ordering = ['-created_at']
