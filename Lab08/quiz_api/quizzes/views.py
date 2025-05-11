@@ -7,7 +7,9 @@ from .serializers import (
     QuestionSerializer, QuestionDetailSerializer,
     ChoiceSerializer, AnswerSerializer
 )
-
+from analytics.models import QuestionStat, QuizActivity, UserQuizAttempt # Import analytics models
+from django.db.models import F
+from django.utils import timezone  # For current date
 
 class QuizViewSet(viewsets.ModelViewSet):
     """ViewSet for Quiz model"""
@@ -31,6 +33,8 @@ class QuizViewSet(viewsets.ModelViewSet):
         # Process answers
         answers = serializer.validated_data
         results = []
+        correct_count = 0
+        max_possible_score = len(answers)
         
         for answer in answers:
             question_id = answer['question_id']
@@ -43,6 +47,16 @@ class QuizViewSet(viewsets.ModelViewSet):
                 # Check if choice belongs to this question
                 choice = Choice.objects.get(id=choice_id, question=question)
                 
+                #  ---  ANALYTICS RECORDING  ---
+                # Update QuestionStat (or create if it doesn't exist)
+                stat, created = QuestionStat.objects.get_or_create(question=question)
+                stat.attempts = F('attempts') + 1  # Increment safely
+                if choice.is_correct:
+                    stat.correct_attempts = F('correct_attempts') + 1
+                    correct_count += 1
+                stat.save()
+                #  ---  END ANALYTICS RECORDING ---
+
                 # Add result for this answer
                 results.append({
                     'question_id': question_id,
@@ -58,6 +72,21 @@ class QuizViewSet(viewsets.ModelViewSet):
                     'error': 'Question or choice not found'
                 })
         
+        # Update QuizActivity on completion
+        activity, created = QuizActivity.objects.get_or_create(quiz=quiz, date=timezone.now().date())
+        activity.completions = F('completions') + 1
+        activity.save()
+
+        # Record UserQuizAttempt
+        if request.user.is_authenticated:
+            UserQuizAttempt.objects.create(
+                user=request.user,
+                quiz=quiz,
+                score=correct_count,
+                max_score=max_possible_score,
+                completed_at=timezone.now()
+            )
+
         # Calculate score
         correct_answers = sum(1 for r in results if r.get('correct', False))
         total_answers = len(results)
@@ -68,6 +97,17 @@ class QuizViewSet(viewsets.ModelViewSet):
             'percentage': int((correct_answers / total_answers) * 100) if total_answers else 0,
             'results': results
         })
+    
+    def retrieve(self, request, *args, **kwargs): # Override retrieve to track views
+        instance = self.get_object()
+
+        # Increment QuizActivity on view
+        activity, created = QuizActivity.objects.get_or_create(quiz=instance, date=timezone.now().date())
+        activity.views = F('views') + 1
+        activity.save()
+
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
 
 
 class QuestionViewSet(viewsets.ModelViewSet):
