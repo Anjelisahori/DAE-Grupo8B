@@ -4,9 +4,12 @@ from .models import Quiz, Question, Choice
 
 class ChoiceSerializer(serializers.ModelSerializer):
     """Serializer for the Choice model"""
+    question = serializers.PrimaryKeyRelatedField(queryset=Question.objects.all())  # Esto asegura que el question es una clave foránea válida.
+
     class Meta:
         model = Choice
-        fields = ['id', 'text', 'is_correct']
+        fields = ['id', 'question', 'text', 'is_correct']
+
 
 
 class QuestionSerializer(serializers.ModelSerializer):
